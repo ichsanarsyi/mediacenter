@@ -3,11 +3,11 @@
 </script>
 
 <footer
-	class="flex h-auto flex-col items-center justify-center rounded-t-lg bg-blue-100 py-4 text-center text-blue-950 md:flex-row md:text-base"
+	class="flex min-h-18 flex-col items-center justify-center rounded-t-lg bg-cyan-50/75 py-4 text-center text-xs text-blue-950 md:flex-row md:text-base"
 >
 	<p class="flex flex-row">&copy; {currentYear} <span class="mx-1 hidden md:block">|</span></p>
 	<div class="flex items-center justify-center">
-		<span> Build with</span>
+		<span> Dikembangkan dengan</span>
 		<a
 			href="https://svelte.dev/tutorial/kit/introducing-sveltekit"
 			target="_blank"
@@ -24,7 +24,7 @@
 			>SvelteKit</a
 		>
 
-		<span class="mx-1">and</span>
+		<span class="mx-0.5">dan</span>
 		<a
 			href="https://tailwindcss.com/"
 			target="_blank"
@@ -42,6 +42,6 @@
 		>
 	</div>
 	<p class="flex flex-row">
-		<span class="mx-1 hidden md:block">|</span>Aptika Team - Diskominfo Kab. Semarang
+		<span class="mx-1 hidden md:block">|</span>Bidang Aptika Diskominfo Kab. Semarang
 	</p>
 </footer>

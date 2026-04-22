@@ -6,7 +6,30 @@
 		<meta name="text-scale" content="scale" />
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-preload-data="hover">
+	<!-- Tambah Class untuk Edit BG Global -->
+	<body
+		data-sveltekit-preload-data="hover"
+		class="animate-gradient-bg bg-linear-to-br from-blue-200 via-blue-50 to-cyan-200"
+	>
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
+	<style>
+		/* Animasi bernama 'gradient-xy' */
+		@keyframes gradient-xy {
+			0%,
+			100% {
+				background-size: 400% 400%;
+				background-position: left center;
+			}
+			50% {
+				background-size: 200% 200%;
+				background-position: right center;
+			}
+		}
+
+		/* Class di tag <body> */
+		.animate-gradient-bg {
+			animation: gradient-xy 15s ease infinite;
+		}
+	</style>
 </html>

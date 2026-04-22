@@ -11,7 +11,7 @@
 <div class="list-item-card">
 	<a href={url} target="_blank" rel="noopener noreferrer">
 		<div
-			class="flex h-36 w-36 flex-col items-center justify-center rounded-2xl bg-white px-2 py-3 text-center shadow-inner shadow-blue-200 drop-shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-cyan-50 hover:drop-shadow-xl md:h-48 md:w-48 md:px-4"
+			class="flex h-36 w-36 flex-col items-center justify-center rounded-3xl bg-white px-2 py-3 text-center shadow-inner shadow-blue-200 drop-shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-2 hover:bg-linear-to-br hover:from-blue-50 hover:to-cyan-50 hover:drop-shadow-xl md:h-48 md:w-48 md:px-4"
 		>
 			<svg
 				role="img"
