@@ -120,10 +120,10 @@
 
 <!-- Main -->
 <main
-	class="relative z-0 flex min-h-screen w-full flex-col items-center justify-start pt-24 pb-24 align-top md:px-12 md:pt-42 lg:px-36"
+	class="relative z-0 flex min-h-screen w-full flex-col items-center justify-start pt-32 pb-24 align-top md:px-12 md:pt-42 lg:px-36"
 >
 	<!-- Filter Section -->
-	<div class="mb-10 flex w-full flex-wrap justify-center gap-2 px-4">
+	<div class="mb-10 flex w-full flex-wrap justify-center gap-2 px-4 md:pb-4">
 		<button
 			class="rounded-full px-4 py-1 text-sm font-semibold transition-colors duration-200 {activeFilters.length ===
 			0
