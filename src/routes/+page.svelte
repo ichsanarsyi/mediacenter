@@ -158,7 +158,7 @@
 </main>
 
 <!-- <div>Footer</div> -->
-<Footer />
+<!-- <Footer /> -->
 
 <style>
 	/* Mengatur tinggi ombak di berbagai layar */
