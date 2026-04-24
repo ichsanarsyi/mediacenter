@@ -14,7 +14,7 @@
  py-2 text-center font-extrabold text-white drop-shadow-md sm:justify-between md:h-24 {navBg}"
 >
 	<div
-		class="hidden sm:mx-8 sm:flex sm:flex-row sm:items-center sm:justify-center sm:gap-4 sm:rounded-full sm:bg-white/80 sm:px-4 sm:py-2"
+		class="hidden sm:mx-8 sm:flex sm:flex-row sm:items-center sm:justify-center sm:gap-4 sm:rounded-full sm:border sm:border-white/50 sm:bg-white/60 sm:px-4 sm:py-2"
 	>
 		<img src={LogoKabSmg} alt="Logo Kab. Semarang" class="h-8" />
 		<img src={LogoDiskominfo} alt="logo diskominfo kab. semarang" class="h-8" />
@@ -25,7 +25,7 @@
 		>
 	</h1>
 	<div
-		class="hidden sm:mx-8 sm:flex sm:flex-row sm:items-center sm:justify-center sm:gap-4 sm:rounded-full sm:bg-white/75 sm:px-4 sm:py-2"
+		class="hidden sm:mx-8 sm:flex sm:flex-row sm:items-center sm:justify-center sm:gap-4 sm:rounded-full sm:border sm:border-white/50 sm:bg-white/60 sm:px-4 sm:py-2"
 	>
 		<img src={LogoBerakhlak} alt="Logo Kab. Semarang" class="h-6" />
 		<img src={LogoBangga} alt="Logo Diskominfo Kab. Semarang" class="h-8" />

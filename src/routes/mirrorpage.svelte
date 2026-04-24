@@ -1,13 +1,10 @@
 <script lang="ts">
-	// Import komponen dari folder lib
 	import Navbar from '$lib/components/Navbar.svelte';
 	// import Footer from '$lib/components/Footer.svelte';
 	import SocmedCard from '$lib/components/SocmedCard.svelte';
-	// import modul browser
-	import { browser } from '$app/environment';
 
-	// Daftar Medsos >> akan ganti pake DB & API
 	const socmedList = [
+		/* ... DATA MEDSOS ANDA BIARKAN SAMA SEPERTI SEBELUMNYA ... */
 		{
 			name: 'Instagram Diskominfo',
 			username: '@diskominfosemarangkab',
@@ -66,39 +63,25 @@
 		}
 	];
 
-	// state untuk filter
 	let activeFilters = $state<string[]>([]);
-
-	// ambil daftar platform unik secara otomatis dari data
 	const availablePlatforms = [...new Set(socmedList.map((item) => item.platform))];
-
-	// state derived
-	// jika tidak ada filter yang aktif, tampil semua. jika ada, filter data.
 	let filteredList = $derived(
 		activeFilters.length === 0
 			? socmedList
 			: socmedList.filter((item) => activeFilters.includes(item.platform))
 	);
 
-	// Toggle chip
 	function toggleFilters(platform: string) {
 		if (activeFilters.includes(platform)) {
-			// jika ada, buang dari daftar
 			activeFilters = activeFilters.filter((f) => f !== platform);
 		} else {
-			// jika tidak ada, masukkan ke daftar
 			activeFilters = [...activeFilters, platform];
 		}
 	}
 
-	// Konfigurasi Tema
+	// ================= KAMUS KONFIGURASI TEMA ================= //
 	type ThemeName = 'light-blue' | 'dark-blue' | 'light-red' | 'dark-red';
-
-	// cek memori browser
-	// let currentTheme = $state<ThemeName>('light-blue');
-	let currentTheme = $state<ThemeName>(
-		(browser && (localStorage.getItem('mediacenter_theme') as ThemeName)) || 'light-blue'
-	);
+	let currentTheme = $state<ThemeName>('light-blue');
 
 	const themeConfig = {
 		'light-blue': {
@@ -110,7 +93,7 @@
 				'bg-white shadow-inner shadow-blue-200 drop-shadow-lg hover:from-blue-50 hover:to-cyan-50 hover:drop-shadow-xl border border-transparent',
 			cardText: 'text-slate-800',
 			cardSubText: 'text-slate-500',
-			iconFill: '#2b7fff', // blue-500
+			iconFill: 'oklch(62.3% 0.214 259.815)', // light blue
 			waves: [
 				'rgba(6, 182, 212, 0.4)',
 				'rgba(59, 130, 246, 0.4)',
@@ -138,7 +121,7 @@
 		},
 		'light-red': {
 			body: 'from-red-200 via-orange-50 to-rose-200',
-			nav: 'from-red-700 to-rose-400 drop-shadow-red-900/50 text-white',
+			nav: 'from-red-500 to-rose-500 drop-shadow-red-900/50 text-white',
 			filterBtnActive: 'bg-red-500 text-white hover:bg-red-500/50 border-transparent',
 			filterBtnInactive: 'bg-white text-red-500 hover:bg-white/50 border-transparent',
 			cardBg:
@@ -163,7 +146,7 @@
 				'bg-slate-800/90 backdrop-blur shadow-inner shadow-slate-700 drop-shadow-lg hover:from-slate-700 hover:to-red-900 hover:drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)] border border-slate-700',
 			cardText: 'text-slate-100',
 			cardSubText: 'text-slate-400',
-			iconFill: '#ff637e', // rose-500
+			iconFill: '#fb7185', // rose-400
 			waves: [
 				'rgba(190, 18, 60, 0.2)',
 				'rgba(127, 29, 29, 0.4)',
@@ -173,62 +156,54 @@
 		}
 	};
 
-	// Ambil pengaturan tema yang sedang aktif
+	// Ini akan mengambil pengaturan tema yang sedang aktif secara real-time
 	let activeThemeObj = $derived(themeConfig[currentTheme]);
 
-	// Ganti class body global
+	// Mengganti class pada tag <body> (yang berada di app.html) agar background global berubah
 	$effect(() => {
 		document.body.className = `animate-gradient-bg bg-linear-to-br transition-colors duration-1000 ${activeThemeObj.body}`;
-
-		// Simpan pengaturan tema ke memori browser
-		if (browser) {
-			localStorage.setItem('mediacenter_theme', currentTheme);
-		}
 	});
 </script>
 
-<!-- Top Navbar -->
 <Navbar navBg={activeThemeObj.nav} />
 
-<!-- Button Tema -->
 <div
-	class="fixed right-4 bottom-4 z-50 flex gap-3 rounded-full border border-white/50 bg-white/50 p-3 shadow-xl backdrop-blur-md md:right-8 md:bottom-8"
+	class="fixed right-4 bottom-4 z-50 flex gap-3 rounded-full border border-white/50 bg-white/70 p-3 shadow-xl backdrop-blur-md md:right-8 md:bottom-8"
 >
 	<button
-		class="h-4 w-4 rounded-full bg-cyan-300 ring-offset-2 transition-all hover:scale-110 {currentTheme ===
+		class="h-6 w-6 rounded-full bg-cyan-300 ring-offset-2 transition-all hover:scale-110 {currentTheme ===
 		'light-blue'
-			? 'ring-2 ring-blue-400'
+			? 'ring-2 ring-slate-800'
 			: ''}"
 		onclick={() => (currentTheme = 'light-blue')}
 		title="Light Blue Mode"
 	></button>
 	<button
-		class="h-4 w-4 rounded-full bg-cyan-800 ring-offset-2 transition-all hover:scale-110 {currentTheme ===
+		class="h-6 w-6 rounded-full bg-blue-950 ring-offset-2 transition-all hover:scale-110 {currentTheme ===
 		'dark-blue'
-			? 'ring-2 ring-blue-600'
+			? 'ring-2 ring-blue-400'
 			: ''}"
 		onclick={() => (currentTheme = 'dark-blue')}
 		title="Dark Blue Mode"
 	></button>
 	<button
-		class="h-4 w-4 rounded-full bg-rose-500 ring-offset-2 transition-all hover:scale-110 {currentTheme ===
+		class="h-6 w-6 rounded-full bg-orange-300 ring-offset-2 transition-all hover:scale-110 {currentTheme ===
 		'light-red'
-			? 'ring-2 ring-red-400'
+			? 'ring-2 ring-slate-800'
 			: ''}"
 		onclick={() => (currentTheme = 'light-red')}
 		title="Light Red Mode"
 	></button>
 	<button
-		class="h-4 w-4 rounded-full bg-rose-800 ring-offset-2 transition-all hover:scale-110 {currentTheme ===
+		class="h-6 w-6 rounded-full bg-red-950 ring-offset-2 transition-all hover:scale-110 {currentTheme ===
 		'dark-red'
-			? 'ring-2 ring-red-600'
+			? 'ring-2 ring-red-400'
 			: ''}"
 		onclick={() => (currentTheme = 'dark-red')}
 		title="Dark Red Mode"
 	></button>
 </div>
 
-<!-- BG Ombak Warna -->
 <div class="animate-gradient-bg fixed bottom-0 left-0 -z-10 w-full">
 	<svg
 		class="waves opacity-50"
@@ -277,14 +252,12 @@
 	</svg>
 </div>
 
-<!-- Main -->
 <main
 	class="relative z-0 flex min-h-screen w-full flex-col items-center justify-start pt-32 pb-24 align-top md:px-12 md:pt-42 lg:px-36"
 >
-	<!-- Filter Section -->
 	<div class="mb-10 flex w-full flex-wrap justify-center gap-2 px-4 md:pb-4">
 		<button
-			class="rounded-full px-4 py-1 text-sm font-semibold transition-colors duration-200 {activeFilters.length ===
+			class="rounded-full border px-4 py-1 text-sm font-semibold transition-colors duration-200 {activeFilters.length ===
 			0
 				? activeThemeObj.filterBtnActive
 				: activeThemeObj.filterBtnInactive}"
@@ -293,7 +266,7 @@
 
 		{#each availablePlatforms as platform}
 			<button
-				class="rounded-full px-4 py-1 text-sm font-semibold transition-colors duration-200 {activeFilters.includes(
+				class="rounded-full border px-4 py-1 text-sm font-semibold transition-colors duration-200 {activeFilters.includes(
 					platform
 				)
 					? activeThemeObj.filterBtnActive
@@ -303,7 +276,6 @@
 		{/each}
 	</div>
 
-	<!-- Socmed List Cards Items -->
 	<div class="flex flex-wrap content-center items-center justify-center gap-4 px-4 md:gap-8">
 		{#each filteredList as socmed}
 			<SocmedCard
@@ -320,11 +292,7 @@
 	</div>
 </main>
 
-<!-- <div>Footer</div> -->
-<!-- <Footer /> -->
-
 <style>
-	/* Mengatur tinggi ombak di berbagai layar */
 	.waves {
 		position: relative;
 		width: 100%;
@@ -333,12 +301,9 @@
 		max-height: 150px;
 	}
 
-	/* Animasi pergerakan ombak (saling susul menyusul) */
 	.parallax > use {
 		animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
 	}
-
-	/* Mengatur kecepatan yang berbeda untuk setiap lapis ombak */
 	.parallax > use:nth-child(1) {
 		animation-delay: -2s;
 		animation-duration: 7s;

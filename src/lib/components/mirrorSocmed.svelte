@@ -1,5 +1,5 @@
 <script lang="ts">
-	// Definisi properti apa saja yang dibutuhkan oleh komponen ini
+	// Menambahkan prop tema dengan nilai bawaan (fallback) light-blue
 	let {
 		url,
 		name,
@@ -24,7 +24,7 @@
 <div class="list-item-card">
 	<a href={url} target="_blank" rel="noopener noreferrer">
 		<div
-			class="flex h-36 w-36 flex-col items-center justify-center rounded-3xl px-2 py-3 text-center shadow-inner drop-shadow-lg transition-all duration-500 ease-in-out hover:-translate-y-2 hover:bg-linear-to-br md:h-48 md:w-48 md:px-4 {cardBg}"
+			class="flex h-36 w-36 flex-col items-center justify-center rounded-3xl px-2 py-3 text-center shadow-inner drop-shadow-lg transition-all duration-500 ease-in-out hover:-translate-y-2 md:h-48 md:w-48 md:px-4 {cardBg}"
 		>
 			<svg
 				role="img"
